@@ -7,6 +7,9 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var app = express();
 
+var passport = require("passport");
+var authenticate = require("./authenticate");
+
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 
@@ -45,24 +48,22 @@ app.use(
     resave: true,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+
 //---------------Basic Authentication-----------------
 function auth(req, res, next) {
-  console.log(req.session);
+  console.log(req.user);
 
-  if (!req.session.user) {
+  if (!req.user) {
     var err = new Error("You are not authenticated! salam");
     err.status = 403;
-    return next(err);
+    next(err);
   } else {
-    if (req.session.user === "authenticated") {
-      next();
-    } else {
-      var err = new Error("You are not authenticated! my friend");
-      err.status = 403;
-      return next(err);
-    }
+    next();
   }
 }
 
