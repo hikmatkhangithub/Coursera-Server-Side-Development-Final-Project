@@ -10,12 +10,14 @@ var app = express();
 var passport = require("passport");
 var authenticate = require("./authenticate");
 
+var config = require("./config");
+
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 
 const mongoose = require("mongoose");
 const Dishes = require("./models/dishes");
-const Url = "mongodb://localhost:27017/confusion";
+const Url = config.mongoUrl;
 const connect = mongoose.connect(Url, { useNewUrlParser: true });
 
 connect.then(

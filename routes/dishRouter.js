@@ -5,6 +5,8 @@ const dishRouter = express.Router();
 const mongoose = require("mongoose");
 const Dishes = require("../models/dishes");
 
+var authenticate = require("../authenticate");
+
 dishRouter.use(bodyParser.json());
 
 dishRouter
@@ -26,7 +28,7 @@ dishRouter
       });
   })
 
-  .post((req, res, next) => {
+  .post(authenticate.verifyUser, (req, res, next) => {
     Dishes.create(req.body)
       .then(
         (dish) => {
@@ -43,12 +45,12 @@ dishRouter
         next(err.message);
       });
   })
-  .put((req, res, next) => {
+  .put(authenticate.verifyUser, (req, res, next) => {
     res.statusCode = 403;
     res.end("PUT operation is not supported for /dishes");
   })
 
-  .delete((req, res, next) => {
+  .delete(authenticate.verifyUser, (req, res, next) => {
     Dishes.remove({})
       .then(
         (response) => {
@@ -82,11 +84,11 @@ dishRouter
         next(err);
       });
   })
-  .post((req, res, next) => {
+  .post(authenticate.verifyUser, (req, res, next) => {
     res.statusCode = 403;
     res.end("POST operaton is not supported for /dishes/" + req.params.dishId);
   })
-  .put((req, res, next) => {
+  .put(authenticate.verifyUser, (req, res, next) => {
     Dishes.findByIdAndUpdate(
       req.params.dishId,
       {
@@ -108,7 +110,7 @@ dishRouter
         next(err);
       });
   })
-  .delete((req, res, next) => {
+  .delete(authenticate.verifyUser, (req, res, next) => {
     Dishes.findByIdAndRemove(req.params.dishId)
       .then(
         (response) => {
