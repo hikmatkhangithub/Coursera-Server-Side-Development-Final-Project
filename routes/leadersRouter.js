@@ -27,7 +27,7 @@ leadersRouter
         next(err);
       });
   })
-  .post(authenticate.verifyUser, (req, res, next) => {
+  .post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Leaders.create(req.body)
       .then(
         (leader) => {
@@ -47,22 +47,26 @@ leadersRouter
     res.statusCode = 403;
     res.end("PUT operation is not supported for /leaders");
   })
-  .delete(authenticate.verifyUser, (req, res, next) => {
-    Leaders.remove({})
-      .then(
-        (leaders) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
-          res.json(leaders);
-        },
-        (err) => {
+  .delete(
+    authenticate.verifyUser,
+    authenticate.verifyAdmin,
+    (req, res, next) => {
+      Leaders.remove({})
+        .then(
+          (leaders) => {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.json(leaders);
+          },
+          (err) => {
+            next(err);
+          }
+        )
+        .catch((err) => {
           next(err);
-        }
-      )
-      .catch((err) => {
-        next(err);
-      });
-  });
+        });
+    }
+  );
 
 //-------------------HTTP requests with LeaderId-----------------------------
 
@@ -88,7 +92,7 @@ leadersRouter
     res.statusCode = 403;
     res.end("POST is not supported for /leaders/" + req.params.leaderId);
   })
-  .put(authenticate.verifyUser, (req, res, next) => {
+  .put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Leaders.findByIdAndUpdate(
       req.params.leaderId,
       {
@@ -112,21 +116,25 @@ leadersRouter
         next(err);
       });
   })
-  .delete(authenticate.verifyUser, (req, res, next) => {
-    Leaders.findByIdAndRemove(req.params.leaderId)
-      .then(
-        (leader) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
-          res.json(leader);
-        },
-        (err) => {
+  .delete(
+    authenticate.verifyUser,
+    authenticate.verifyAdmin,
+    (req, res, next) => {
+      Leaders.findByIdAndRemove(req.params.leaderId)
+        .then(
+          (leader) => {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.json(leader);
+          },
+          (err) => {
+            next(err);
+          }
+        )
+        .catch((err) => {
           next(err);
-        }
-      )
-      .catch((err) => {
-        next(err);
-      });
-  });
+        });
+    }
+  );
 
 module.exports = leadersRouter;
