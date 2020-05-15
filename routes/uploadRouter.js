@@ -6,6 +6,8 @@ const authenticate = require("../authenticate");
 
 const multer = require("multer");
 
+const cors = require("./cors");
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
@@ -30,11 +32,15 @@ uploadRouter.use(bodyParser.json());
 
 uploadRouter
   .route("/")
-  .get((req, res, next) => {
+  .options(cors.corsWithOptions, (req, res) => {
+    res.statusCode(200);
+  })
+  .get(cors.cors, (req, res, next) => {
     res.statusCode = 401;
     res.end("GET request is not spported on /images/");
   })
   .post(
+    cors.corsWithOptions,
     authenticate.verifyUser,
     authenticate.verifyAdmin,
     upload.single("imageFile"),
@@ -44,11 +50,11 @@ uploadRouter
       res.json(req.file);
     }
   )
-  .put((req, res, next) => {
+  .put(cors.corsWithOptions, (req, res, next) => {
     res.statusCode = 401;
     res.end("PUT request is not spported on /images/");
   })
-  .delete((req, res, next) => {
+  .delete(cors.corsWithOptions, (req, res, next) => {
     res.statusCode = 401;
     res.end("DELETE request is not spported on /images/");
   });

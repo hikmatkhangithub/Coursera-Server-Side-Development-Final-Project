@@ -9,9 +9,14 @@ const mongoose = require("mongoose");
 
 const Promotions = require("../models/promotions");
 
+const cors = require("./cors");
+
 promosRouter
   .route("/")
-  .get((req, res, next) => {
+  .options(cors.corsWithOptions, (req, res) => {
+    res.statusCode(200);
+  })
+  .get(cors.cors, (req, res, next) => {
     Promotions.find({})
       .then(
         (promotions) => {
@@ -27,27 +32,33 @@ promosRouter
         next(err);
       });
   })
-  .post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-    Promotions.create(req.body)
-      .then(
-        (promotions) => {
-          res.statusCode = 201;
-          res.setHeader("Content-Type", "application/json");
-          res.json(promotions);
-        },
-        (err) => {
+  .post(
+    cors.corsWithOptions,
+    authenticate.verifyUser,
+    authenticate.verifyAdmin,
+    (req, res, next) => {
+      Promotions.create(req.body)
+        .then(
+          (promotions) => {
+            res.statusCode = 201;
+            res.setHeader("Content-Type", "application/json");
+            res.json(promotions);
+          },
+          (err) => {
+            next(err);
+          }
+        )
+        .catch((err) => {
           next(err);
-        }
-      )
-      .catch((err) => {
-        next(err);
-      });
-  })
-  .put(authenticate.verifyUser, (req, res, next) => {
+        });
+    }
+  )
+  .put(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     res.statusCode = 403;
     res.end("PUT operation is not supported for /promotions");
   })
   .delete(
+    cors.corsWithOptions,
     authenticate.verifyUser,
     authenticate.verifyAdmin,
     (req, res, next) => {
@@ -72,7 +83,10 @@ promosRouter
 
 promosRouter
   .route("/:promoId")
-  .get((req, res, next) => {
+  .options(cors.corsWithOptions, (req, res) => {
+    res.statusCode(200);
+  })
+  .get(cors.cors, (req, res, next) => {
     Promotions.findById(req.params.promoId)
       .then(
         (promotion) => {
@@ -88,35 +102,41 @@ promosRouter
         next(err);
       });
   })
-  .post(authenticate.verifyUser, (req, res, next) => {
+  .post(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     res.statusCode = 403;
     res.end("POST is not supported for /promotions/" + req.params.promoId);
   })
-  .put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-    Promotions.findByIdAndUpdate(
-      req.params.promoId,
-      {
-        $set: req.body,
-      },
-      {
-        new: true,
-      }
-    )
-      .then(
-        (promotion) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
-          res.json(promotion);
+  .put(
+    cors.corsWithOptions,
+    authenticate.verifyUser,
+    authenticate.verifyAdmin,
+    (req, res, next) => {
+      Promotions.findByIdAndUpdate(
+        req.params.promoId,
+        {
+          $set: req.body,
         },
-        (err) => {
-          next(err);
+        {
+          new: true,
         }
       )
-      .catch((err) => {
-        next(err);
-      });
-  })
+        .then(
+          (promotion) => {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.json(promotion);
+          },
+          (err) => {
+            next(err);
+          }
+        )
+        .catch((err) => {
+          next(err);
+        });
+    }
+  )
   .delete(
+    cors.corsWithOptions,
     authenticate.verifyUser,
     authenticate.verifyAdmin,
     (req, res, next) => {
