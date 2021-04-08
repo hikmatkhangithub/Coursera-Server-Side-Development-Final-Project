@@ -13,7 +13,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -23,9 +23,9 @@
     This project was developed as part of Full-stack development certification on coursera. In this project we created a REST api to store data on MongoDB.
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project/issues">Report Bug</a>
   </p>
 </p>
 
@@ -117,7 +117,7 @@ _For more information about this project, please refer to the [Coursera](https:/
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project/issues) for a list of proposed features (and known issues).
 
 
 
@@ -146,7 +146,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Hikmat khan - [@Linkedin](https://www.linkedin.com/in/hikmat-khan-34b773177/) - hikmat.khan5130@yahoo.com
 
-Project Link: [https://github.com/hikmatkhan](https://bitbucket.org/hikmatdev/server-side-development-with-node.js-express-mongodb)
+Project Link: [https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project](https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project)
 
 
 
@@ -159,13 +159,13 @@ Project Link: [https://github.com/hikmatkhan](https://bitbucket.org/hikmatdev/se
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project?style=for-the-badge
 [contributors-url]: https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project.svg?style=for-the-badge
 [forks-url]: https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project/network/members
 [stars-shield]: https://img.shields.io/github/stars/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project.svg?style=for-the-badge
 [stars-url]: https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project.svg?style=for-the-badge
 [issues-url]: https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project.svg?style=for-the-badge
 [license-url]: https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/hikmat-khan-34b773177/
