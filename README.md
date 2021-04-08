@@ -94,7 +94,7 @@ In order to run this repository you need to install some required tools such as 
 
 1. Clone the repo
    ```sh
-   git clone https://hikmatdev@bitbucket.org/hikmatdev/server-side-development-with-node.js-express-mongodb.git
+   git clone https://github.com/hikmatkhangithub/Coursera-Server-Side-Development-Final-Project.git
    ```
 2. Open terminal/command prompt in the same directory
 
